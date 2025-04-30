@@ -3,40 +3,40 @@
 @section('content')
 <div class="container py-5">
     <h1 class="mb-5 text-center fw-bold display-5 text-primary">
-        Sales Dashboard 
+        Dashboard 
     </h1>
 
     <!-- Summary Cards -->
     <div class="row mb-5 g-4">
         <div class="col-md-4">
-            <div class="card border-0 shadow-lg rounded-4 bg-white">
+            <div class="">
                 <div class="card-body text-center p-4">
                     <i class="bi bi-cash-coin fs-1 text-info mb-3"></i>
                     <h6 class="text-muted">Total Sales</h6>
-                    <h2 class="fw-bold text-info">₱{{ number_format($totalSales, 2) }}</h2>
+                    <h2 class="fw-bold text-success">₱{{ number_format($totalSales, 2) }}</h2>
                 </div>
             </div>
         </div>
 
         <div class="col-md-4">
-            <div class="card border-0 shadow-lg rounded-4 bg-white">
+            <div class="">
                 <div class="card-body text-center p-4">
                     <i class="bi bi-bag-check fs-1 text-success mb-3"></i>
                     <h6 class="text-muted">Total Number of Sales</h6>
-                    <h2 class="fw-bold text-success">{{ $salesCount }}</h2>
+                    <h2 class="fw-bold text-info">{{ $salesCount }}</h2>
                 </div>
             </div>
         </div>
 
         <div class="col-md-4">
-            <div class="card border-0 shadow-lg rounded-4 bg-white">
+            <div class="">
                 <div class="card-body p-4">
                     <h6 class="text-muted text-center mb-3">Sales Per Region</h6>
                     <ul class="list-group list-group-flush">
                         @foreach ($salesPerRegion as $region)
                             <li class="list-group-item d-flex justify-content-between bg-light">
                                 <span>{{ $region['region_name'] }}</span>
-                                <span class="fw-semibold text-primary">{{ number_format($region['total_units']) }}</span>
+                                <span class="fw-semibold text-warning">{{ number_format($region['total_units']) }}</span>
                             </li>
                         @endforeach
                     </ul>
@@ -53,7 +53,7 @@
                     Sales Count by Region
                 </div>
                 <div class="card-body">
-                    <canvas id="salesPerRegionChart" height="250"></canvas>
+                    <canvas id="salesPerRegionChart" height="230"></canvas>
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
                     Total Sales Per Date
                 </div>
                 <div class="card-body">
-                    <canvas id="salesPerMonthChart" height="250"></canvas>
+                    <canvas id="salesPerMonthChart" height="230"></canvas>
                 </div>
             </div>
         </div>
@@ -108,9 +108,9 @@ new Chart(document.getElementById('salesPerMonthChart'), {
         datasets: [{
             label: 'Units Sold',
             data: {!! json_encode($salesPerMonth->pluck('total_units')) !!},
-            backgroundColor: 'rgba(26, 49, 148, 0.1)', // Success fill
+            backgroundColor: 'rgba(40, 66, 180, 0.46)', // Success fill
             borderColor: 'rgb(0, 255, 255)',
-            pointBackgroundColor: 'rgb(21, 111, 122)',
+            pointBackgroundColor: 'rgba(46, 186, 204, 0.88)',
             fill: true,
             tension: 0.4,
         }]
